@@ -38,11 +38,41 @@ def isdigit(n):
 def try_get_num(s, n):
    s = s.lower()
 
-   if s[n] == '①':
+   c = s[n]
+   if c in ['①', '➊', '❶']:
       return (1, 1)
+   if c in ['➋', '❷', '②']:
+      return (2, 1)
+   if c == '③':
+      return (3, 1)
+   if c in ['➍', '④']:
+      return (4, 1)
+   if c == '⑤':
+      return (5, 1)
+   if c in ['⑥']:
+      return (6, 1)
+   if c in ['⑦', '➆']:
+      return (7, 1)
+   if c == '⑨':
+      return (9, 1)
+
+
+   all_nums1 = "0➊➋➌➍➎➏➐➑➒➓"
+   all_nums2 = "0⓵⓶⓷⓸⓹⓺⓻⓼⓽⓾";
+   for i, x in enumerate(all_nums1):
+      if c == x:
+         return (i, 1)
+
+   for i, x in enumerate(all_nums2):
+      if c == x:
+         return (i, 1)
+
 
    if s[n].isdigit():
-      return (int(s[n]), 1)
+      try:
+         return (int(s[n]), 1)
+      except Exception as e:
+         pass
 
    for i, check1 in enumerate(str_nums):
       check2 = s[n:n+len(check1)]
